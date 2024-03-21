@@ -45,13 +45,25 @@ To run the wine quality prediction model, follow these steps:
 
 This will initiate the process defined in `main.py`, including data preparation, model training, and evaluation steps. Make sure the `data` folder is properly set up as outlined in the [Data Setup](#data-setup) section.
 
+"For an in-depth look at the model development process, including data preprocessing, feature engineering, and model evaluation, please refer to our detailed Jupyter notebook located at `/notebooks/pipeline.ipynb`."
+
 ## Project Structure
 
 ```
 /project-directory
-    /data           # For privacy reasons, this won't be pushed
     /src            # Source files for model training and evaluation
+        main.py
+        helper.py
+        datacleaning.py
+        eda.py
+        featureengineering.py
+        featureselection.py
+    /models
+        rfmodel.py  # Random Forest Model used in the project
+        gbmmodel.py
     /notebooks      # Jupyter notebooks for EDA and analysis
+        dataanalysis.ipynb
+        pipeline.ipynb
     /data           # Directory for dataset storage
     /tests          
     README.md
@@ -62,10 +74,10 @@ This will initiate the process defined in `main.py`, including data preparation,
 ## Methodology
 
 ### Data Cleaning
-The data cleaning process analyzes the dataset to handle missing values, outliers, and ensure data consistency.
+The data cleaning process analyzes the dataset to handle missing values, and ensure data consistency.
 
 ### Exploratory Data Analysis (EDA)
-Performed both through simple pandas and seaborn-based analysis for quick insights and a dedicated notebook for deeper investigation into the dataset's distribution and relationships.
+Performed both through simple pandas and seaborn-based analysis for quick insights and a dedicated notebook `/notebooks/dataanalysis.ipynb` for deeper investigation into the dataset's distribution and relationships.
 
 ### Feature Engineering
 Involved handling outliers and calculating feature importance scores to enhance model performance.
