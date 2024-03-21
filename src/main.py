@@ -22,6 +22,7 @@ import rfmodel
 
 
 def main():
+    # We are working here wiht a file named "winequality-white.csv" in the data folder
     data_file_path = os.path.join(current_dir, '..', 'data', 'winequality-white.csv')
     data_df = pd.read_csv(data_file_path, sep=';')
     

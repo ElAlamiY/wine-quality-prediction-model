@@ -48,7 +48,7 @@ This will initiate the process defined in `main.py`, including data preparation,
 "For an in-depth look at the model development process, including data preprocessing, feature engineering, and model evaluation, please refer to our detailed Jupyter notebook located at `/notebooks/pipeline.ipynb`."
 
 ## Project Structure
-
+Please note that the data folder has to populated with own files.
 ```
 /project-directory
     /src            # Source files for model training and evaluation
@@ -64,7 +64,7 @@ This will initiate the process defined in `main.py`, including data preparation,
     /notebooks      # Jupyter notebooks for EDA and analysis
         dataanalysis.ipynb
         pipeline.ipynb
-    /data           # Directory for dataset storage
+    /data           # Directory for dataset storage, Make sure to add your own data in this folder
     /tests          
     README.md
     LICENSE.md
