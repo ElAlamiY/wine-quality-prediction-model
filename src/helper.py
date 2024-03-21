@@ -1,4 +1,6 @@
 from itertools import combinations
+import featureselection
+import models.rfmodel as rfmodel  
 
 def generate_feature_combinations(data):
     """
@@ -19,9 +21,6 @@ def generate_feature_combinations(data):
         all_combinations.extend([list(combo) for combo in combinations(features, r)])
 
     return all_combinations
-
-import featureselection
-import rfmodel  
 
 def incremental_feature_training(data, sorted_features):
     """
