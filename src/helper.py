@@ -1,6 +1,6 @@
 from itertools import combinations
 import featureselection
-import models.rfmodel as rfmodel  
+import rfmodel
 
 def generate_feature_combinations(data):
     """
