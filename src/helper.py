@@ -17,7 +17,7 @@ def generate_feature_combinations(data):
 
     # Generate all possible combinations of features
     all_combinations = []
-    for r in range(1, len(features) + 1):
+    for r in range(5, len(features) + 1):
         all_combinations.extend([list(combo) for combo in combinations(features, r)])
 
     return all_combinations

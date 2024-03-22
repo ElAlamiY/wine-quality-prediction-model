@@ -39,8 +39,9 @@ def main():
     print(f"Features sorted by their importance score {sorted_importances}")
     
     # Train model
-    model, _, _ = rfmodel.train_wine_quality_model(data)
-
+    model, val_accuracy, test_accuracy = rfmodel.train_wine_quality_model(data)
+    print(f'Validation Accuracy: {val_accuracy}')
+    print(f'Test Accuracy: {test_accuracy}')
     return model
 
 if __name__ == "__main__":

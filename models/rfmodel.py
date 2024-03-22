@@ -30,12 +30,12 @@ def train_wine_quality_model(data):
     # Validate the model
     y_val_pred = rf.predict(X_val)
     val_accuracy = accuracy_score(y_val, y_val_pred)
-    print(f'Validation Accuracy: {val_accuracy}')
+    #print(f'Validation Accuracy: {val_accuracy}')
 
     # Test the model
     y_test_pred = rf.predict(X_test)
     test_accuracy = accuracy_score(y_test, y_test_pred)
-    print(f'Test Accuracy: {test_accuracy}')
+    #print(f'Test Accuracy: {test_accuracy}')
 
     return rf, val_accuracy, test_accuracy
 
