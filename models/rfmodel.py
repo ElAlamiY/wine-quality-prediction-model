@@ -81,5 +81,3 @@ def train_wine_quality_model_enhanced(data):
     test_accuracy = accuracy_score(y_test, y_test_pred)
 
     return best_model, val_accuracy, test_accuracy, random_search.best_params_
-
-
