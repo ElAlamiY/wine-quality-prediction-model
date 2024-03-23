@@ -51,7 +51,7 @@ def test_model(model, X_test, y_test):
     accuracy = accuracy_score(y_test, y_pred)
     print(f'Test Accuracy: {accuracy:.4f}')
 
-def train_validate_test_and_save_model(data):
+def train_validate_test_model(data):
     # Split data into train, validation, and test sets
     X = data.drop('quality', axis=1)
     y = data['quality']
@@ -66,3 +66,5 @@ def train_validate_test_and_save_model(data):
 
     # Test the model
     test_model(trained_model, X_test, y_test)
+    
+    return trained_model
