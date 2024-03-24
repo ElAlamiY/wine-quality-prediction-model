@@ -17,12 +17,12 @@ def train_wine_quality_model(data):
     X = data.drop('quality', axis=1)
     y = data['quality']
 
-    # Split the data into training, validation, and test sets (60/20/20)
-    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.4, random_state=42)
-    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
+    # Split the data into training, validation, and test sets 
+    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.3, random_state=42)
+    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.4, random_state=42)
 
     # Initialize the RandomForestClassifier
-    rf = RandomForestClassifier(n_estimators=100, random_state=42)
+    rf = RandomForestClassifier(n_estimators=150, random_state=42)
 
     # Train the model
     rf.fit(X_train, y_train)
