@@ -57,7 +57,6 @@ def xgbmodel_optimized(data):
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    # Define the model
     # Define the model with the optimized parameters
     model = XGBClassifier(use_label_encoder=False, eval_metric='mlogloss',
                           max_depth=7, learning_rate=0.1, n_estimators=323, subsample=0.7)
@@ -83,5 +82,7 @@ def xgbmodel_optimized(data):
     plt.xlabel('Feature Importance')
     plt.title('Feature Importance (using XGBClassifier)')
     plt.show()
+
+    return model, list(features)
 
 
