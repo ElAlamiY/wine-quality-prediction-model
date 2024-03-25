@@ -60,10 +60,10 @@ def xgbmodel_optimized(data):
 
     # Define the grid of hyperparameters to search
     param_grid = {
-        'max_depth': [3, 4, 5],
-        'learning_rate': [0.01, 0.1, 0.2],
-        'n_estimators': [100, 200, 300],
-        'subsample': [0.8, 0.9, 1.0]
+        'max_depth': [6, 7, 8],
+        'learning_rate': [0.1, 0.2, 0.3],
+        'n_estimators': [280, 300, 320],
+        'subsample': [0.6, 0.7]
     }
 
     # Set up GridSearchCV
@@ -80,5 +80,4 @@ def xgbmodel_optimized(data):
     test_accuracy = accuracy_score(y_test, y_test_pred)
     print(f'Test Accuracy: {test_accuracy:.4f}')
 
-# Assuming 'data' is your DataFrame
-# xgbmodel_optimized(data)
+
