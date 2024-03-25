@@ -60,10 +60,10 @@ def xgbmodel_optimized(data):
 
     # Define the grid of hyperparameters to search
     param_grid = {
-        'max_depth': [6, 7, 8],
-        'learning_rate': [0.1, 0.2, 0.3],
-        'n_estimators': [280, 300, 320],
-        'subsample': [0.6, 0.7]
+        'max_depth': [7],
+        'learning_rate': [0.1],
+        'n_estimators': [323],
+        'subsample': [0.7]
     }
 
     # Set up GridSearchCV
