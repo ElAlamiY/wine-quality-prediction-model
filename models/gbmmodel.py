@@ -3,6 +3,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
+import numpy as np
 
 def xgbmodel(data):
     # Separate features and target
@@ -56,28 +58,30 @@ def xgbmodel_optimized(data):
     X_test_scaled = scaler.transform(X_test)
 
     # Define the model
-    model = XGBClassifier(use_label_encoder=False, eval_metric='mlogloss')
+    # Define the model with the optimized parameters
+    model = XGBClassifier(use_label_encoder=False, eval_metric='mlogloss',
+                          max_depth=7, learning_rate=0.1, n_estimators=323, subsample=0.7)
 
-    # Define the grid of hyperparameters to search
-    param_grid = {
-        'max_depth': [7],
-        'learning_rate': [0.1],
-        'n_estimators': [323],
-        'subsample': [0.7]
-    }
+    # Fit the model
+    model.fit(X_train_scaled, y_train)
 
-    # Set up GridSearchCV
-    grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=3, n_jobs=-1, verbose=2)
-    grid_search.fit(X_train_scaled, y_train)
-
-    # Print the best parameters and best score
-    print(f"Best parameters found: {grid_search.best_params_}")
-    print(f"Best score: {grid_search.best_score_}")
-
-    # Evaluate the best model on the test set
-    best_model = grid_search.best_estimator_
-    y_test_pred = best_model.predict(X_test_scaled)
+    # Evaluate the model on the test set
+    y_test_pred = model.predict(X_test_scaled)
     test_accuracy = accuracy_score(y_test, y_test_pred)
     print(f'Test Accuracy: {test_accuracy:.4f}')
+
+    # Feature importance analysis
+    feature_importances = model.feature_importances_
+    sorted_idx = np.argsort(feature_importances)[::-1]
+    features = X.columns[sorted_idx]
+    importances = feature_importances[sorted_idx]
+
+    plt.figure(figsize=(10, 6))
+    plt.barh(range(len(importances)), importances, align='center')
+    plt.yticks(range(len(importances)), [features[i] for i in range(len(importances))])
+    plt.gca().invert_yaxis()  # Invert y-axis to have the most important feature on top
+    plt.xlabel('Feature Importance')
+    plt.title('Feature Importance (using XGBClassifier)')
+    plt.show()
 
 
