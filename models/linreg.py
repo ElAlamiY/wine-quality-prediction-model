@@ -1,6 +1,6 @@
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Ridge
 
 def linear_regression_model_tuned(data):
     # Separate features and target
@@ -18,8 +18,8 @@ def linear_regression_model_tuned(data):
     # Define the parameter grid for tuning
     param_grid = {'alpha': [0.01, 0.1, 1.0, 10.0]}
 
-    # Create the Linear Regression model
-    model = LinearRegression()
+    # Create the Ridge Regression model
+    model = Ridge()
 
     # Perform GridSearchCV for hyperparameter tuning
     grid_search = GridSearchCV(model, param_grid, cv=5, scoring='r2')
@@ -33,4 +33,3 @@ def linear_regression_model_tuned(data):
     print(f'Best Model Test Score (R^2): {test_score:.4f}')
 
     return best_model
-
