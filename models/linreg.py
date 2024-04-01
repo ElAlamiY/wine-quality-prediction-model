@@ -1,8 +1,8 @@
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
 
-def linear_regression_model(data):
+def linear_regression_model_tuned(data):
     # Separate features and target
     X = data.drop('quality', axis=1)
     y = data['quality']
@@ -15,21 +15,22 @@ def linear_regression_model(data):
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    # Define and fit the linear regression model
+    # Define the parameter grid for tuning
+    param_grid = {'alpha': [0.01, 0.1, 1.0, 10.0]}
+
+    # Create the Linear Regression model
     model = LinearRegression()
-    model.fit(X_train_scaled, y_train)
 
-    # Evaluate the model on the test set
-    test_score = model.score(X_test_scaled, y_test)
-    print(f'Test Score (R^2): {test_score:.4f}')
+    # Perform GridSearchCV for hyperparameter tuning
+    grid_search = GridSearchCV(model, param_grid, cv=5, scoring='r2')
+    grid_search.fit(X_train_scaled, y_train)
 
-    # Get coefficient values for each feature
-    coefficients = model.coef_
-    feature_names = X.columns
-    feature_coefficients = dict(zip(feature_names, coefficients))
+    # Get the best model from the grid search
+    best_model = grid_search.best_estimator_
 
-    return model, feature_coefficients
+    # Evaluate the best model on the test set
+    test_score = best_model.score(X_test_scaled, y_test)
+    print(f'Best Model Test Score (R^2): {test_score:.4f}')
 
-# Example usage:
-# model, coefficients = linear_regression_model(data)
-# print(coefficients)
+    return best_model
+
