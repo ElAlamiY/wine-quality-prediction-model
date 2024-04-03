@@ -20,7 +20,7 @@ def linear_regression_model_tuned(data):
     X_test_scaled = scaler.transform(X_test)
 
     # Define the range of alpha values to explore
-    alpha_values = [13.0, 14.0, 15.0, 16.0]
+    alpha_values = [13.0]
     best_alpha = None
     best_score = float('-inf')
 
